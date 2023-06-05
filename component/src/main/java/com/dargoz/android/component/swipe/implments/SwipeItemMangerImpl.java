@@ -49,7 +49,7 @@ public class SwipeItemMangerImpl implements SwipeItemMangerInterface {
 
     public void bindView(View view, int position) {
         int resId = swipeAdapterInterface.getSwipeLayoutResourceId(position);
-        SwipeLayout swipeLayout = (SwipeLayout) view.findViewById(resId);
+        SwipeLayout swipeLayout = view.findViewById(resId);
         if (swipeLayout == null)
             throw new IllegalStateException("can not find SwipeLayout in target view");
 
@@ -71,12 +71,11 @@ public class SwipeItemMangerImpl implements SwipeItemMangerInterface {
     @Override
     public void openItem(int position) {
         if (mode == Attributes.Mode.Multiple) {
-            if (!mOpenPositions.contains(position))
-                mOpenPositions.add(position);
+            mOpenPositions.add(position);
         } else {
             mOpenPosition = position;
         }
-        swipeAdapterInterface.notifyDatasetChanged();
+        swipeAdapterInterface.notifyDatasetChanged(position);
     }
 
     @Override
@@ -87,7 +86,7 @@ public class SwipeItemMangerImpl implements SwipeItemMangerInterface {
             if (mOpenPosition == position)
                 mOpenPosition = INVALID_POSITION;
         }
-        swipeAdapterInterface.notifyDatasetChanged();
+        swipeAdapterInterface.notifyDatasetChanged(position);
     }
 
     @Override

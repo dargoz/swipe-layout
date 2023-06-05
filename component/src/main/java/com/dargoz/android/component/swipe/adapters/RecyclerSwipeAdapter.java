@@ -1,7 +1,6 @@
 package com.dargoz.android.component.swipe.adapters;
 
 
-import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,14 +17,16 @@ public abstract class RecyclerSwipeAdapter<VH extends RecyclerView.ViewHolder> e
     public SwipeItemMangerImpl mItemManger = new SwipeItemMangerImpl(this);
 
     @Override
-    public abstract VH onCreateViewHolder(ViewGroup parent, int viewType);
-
-    @Override
-    public abstract void onBindViewHolder(VH viewHolder, final int position);
-
-    @Override
-    public void notifyDatasetChanged() {
-        super.notifyDataSetChanged();
+    public void notifyDatasetChanged(int position) {
+        int itemCount = getItemCount();
+        if (position >= itemCount-1) {
+            notifyItemRangeChanged(0, itemCount - 2);
+        } else if (position == 0) {
+            notifyItemRangeChanged(1, itemCount - 2);
+        } else {
+            notifyItemRangeChanged(position + 1, itemCount - position - 1);
+            notifyItemRangeChanged(0, position);
+        }
     }
 
     @Override

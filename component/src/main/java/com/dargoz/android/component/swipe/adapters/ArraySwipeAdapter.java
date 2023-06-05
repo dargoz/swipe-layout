@@ -42,7 +42,7 @@ public abstract class ArraySwipeAdapter<T> extends ArrayAdapter implements Swipe
     }
 
     @Override
-    public void notifyDatasetChanged() {
+    public void notifyDatasetChanged(int position) {
         super.notifyDataSetChanged();
     }
 

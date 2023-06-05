@@ -42,7 +42,7 @@ public abstract class BaseSwipeAdapter extends BaseAdapter implements SwipeItemM
     public abstract void fillValues(int position, View convertView);
 
     @Override
-    public void notifyDatasetChanged() {
+    public void notifyDatasetChanged(int position) {
         super.notifyDataSetChanged();
     }
 

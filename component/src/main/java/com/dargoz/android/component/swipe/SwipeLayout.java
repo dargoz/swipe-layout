@@ -398,7 +398,7 @@ public class SwipeLayout extends FrameLayout {
 
             invalidate();
 
-            captureChildrenBound();
+//            captureChildrenBound();
         }
     };
 
@@ -681,10 +681,13 @@ public class SwipeLayout extends FrameLayout {
         void onLayout(SwipeLayout v);
     }
 
-    private List<OnLayout> mOnLayoutListeners;
+    private List<OnLayout> mOnLayoutListeners = new ArrayList<>();
+
+    public List<OnLayout> getmOnLayoutListeners() {
+        return mOnLayoutListeners;
+    }
 
     public void addOnLayoutListener(OnLayout l) {
-        if (mOnLayoutListeners == null) mOnLayoutListeners = new ArrayList<OnLayout>();
         mOnLayoutListeners.add(l);
     }
 
